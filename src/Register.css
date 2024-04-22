@@ -1,0 +1,75 @@
+/* Register.css */
+
+.container {
+    max-width: 800px;
+    margin: 50px auto; /* Center the container vertically and horizontally */
+    padding: 0 20px; /* Add padding to prevent reaching the edges */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.violations-container {
+    margin-top: 20px;
+}
+
+.violation-card {
+    background-color: #ffebee;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.violation-message {
+    color: #ff0000;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.label-field {
+    flex-basis: calc(50% - 10px);
+    margin-bottom: 15px;
+}
+
+.label-field label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.label-field input,
+.label-field select {
+    width: calc(100% - 5px);
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
