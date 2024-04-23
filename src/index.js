@@ -5,6 +5,8 @@ import { store } from './app/store';
 import Register from './Register';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
+import { BrowserRouter } from 'react-router-dom';
+import Routecomponent from './route';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
@@ -12,7 +14,9 @@ const root = createRoot(container);
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <Register />
+      <BrowserRouter>
+        <Routecomponent/>
+      </BrowserRouter>
     </Provider>
   </React.StrictMode>
 );
