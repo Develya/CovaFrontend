@@ -1,12 +1,7 @@
 import React from 'react';
 import './Login.css';
 
-const Register = () => {
-    const [lastName, setLastName] = React.useState('');
-    const [firstName, setFirstName] = React.useState('');
-    const [telephone, setTelephone] = React.useState('');
-    const [dateOfBirth, setDateOfBirth] = React.useState('');
-    const [gender, setGender] = React.useState('Prefer not to say');
+const Login = () => {
     const [email, setEmail] = React.useState('');
     const [hashedPassword, setHashedPassword] = React.useState('');
     
@@ -53,7 +48,7 @@ const Register = () => {
     return (
         <>
             <div className="container">
-                <h1>Register an account</h1>
+                <h1>Login</h1>
                 <form onSubmit={(e) => handleSubmit(e)}>
                     <div className="label-field">
                         <label htmlFor="email">Email:</label>
