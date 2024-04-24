@@ -1,0 +1,25 @@
+.container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  
+  .address {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .time {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .buttons {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .buttons button {
+    margin-right: 10px;
+  }
+  

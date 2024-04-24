@@ -7,6 +7,8 @@ import Register from './Register';
 import Cars from './Cars';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
+import { BrowserRouter } from 'react-router-dom';
+import Routecomponent from './route';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
