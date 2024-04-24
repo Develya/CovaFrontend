@@ -31,7 +31,7 @@ const Login = () => {
                 
                 switch (data.success) {
                     case true:
-                        setUser(JSON.parse(data.user));
+                        setUser(data.user);
                         break;
                     case false:
                         alert(data.message);
