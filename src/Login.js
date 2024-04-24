@@ -1,7 +1,7 @@
 import React from 'react';
 import './Register.css';
 
-const Register = () => {
+const Login = () => {
     const [lastName, setLastName] = React.useState('');
     const [firstName, setFirstName] = React.useState('');
     const [telephone, setTelephone] = React.useState('');
@@ -60,7 +60,7 @@ const Register = () => {
     return (
         <>
             <div className="container">
-                <h1>Register an account</h1>
+                <h1>Login into an account</h1>
                 <form onSubmit={(e) => handleSubmit(e)}>
                     <div className="label-field">
                         <label htmlFor="email">Email:</label>
@@ -91,7 +91,7 @@ const Register = () => {
     );
 };
 
-export default Register;
+export default Login;
 
 /* Fields to add to form
 {
