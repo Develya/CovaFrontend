@@ -20,6 +20,10 @@ const Habitualtrajets = () =>{
       navigate('/createTrajet')
     }
 
+    const handleCreateJourney = (trajetID,dayID) =>{
+      navigate(`/createJourney/${userID}/${trajetID}/${dayID}`)
+    }
+
     return (
         <div className="container">
           <button onClick={() => handleCreate()}>Create</button>
@@ -40,6 +44,7 @@ const Habitualtrajets = () =>{
                   <div className="buttons">
                     <button onClick={() => handleModify(trajet.trajetID)} >Modify</button>
                     <button onClick={() => DeleteTrajet(trajet.trajetID)}>Delete</button>
+                    <button onClick={() => handleCreateJourney(trajet.trajetID,trajet.dayOfWeek.dayID)}>Add to a journey</button>
                   </div>
                 </div>
               );

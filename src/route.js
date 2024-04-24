@@ -5,6 +5,7 @@ import Habitualtrajets from './trajet'
 import RegisterOrLogin from './RegisterOrLogin'
 import Register from './Register'
 import Login from './Login'
+import { CreateJourney } from './journeyDAO'
 
 const Routecomponent = () => (
     <Routes>
@@ -14,6 +15,7 @@ const Routecomponent = () => (
         <Route path='/habitualtrajets/:userID' element={<Habitualtrajets/>}/>
         <Route path='/createTrajet' element={<CreateTrajet/>}/>
         <Route path='/updateTrajet/:trajetID' element={<UpdateTrajet />} />
+        <Route path='/createJourney/:userID/:trajetID/:dayID' element={<CreateJourney/>}/>
     </Routes>
 )
 
