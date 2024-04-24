@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import './trajet.css'
 import { DeleteTrajet } from "./trajetDAO";
-import {useNavigate } from "react-router-dom";
+import {useNavigate, useParams } from "react-router-dom";
 
 const Habitualtrajets = () =>{
-const [trajets, settrajets] = useState([])
-const userId = 1;
-const navigate = useNavigate()
-
+  const {userID} = useParams();
+  const [trajets, settrajets] = useState([])
+  const navigate = useNavigate()
     fetch('http://localhost:8083/trajets/all')
     .then(response => response.json())
     .then(json => settrajets(json))
@@ -25,7 +24,7 @@ const navigate = useNavigate()
         <div className="container">
           <button onClick={() => handleCreate()}>Create</button>
           {trajets.map((trajet) => {
-            if (parseInt(trajet.user.userID) === userId) {
+            if (parseInt(trajet.user.userID) === parseInt(userID)) {
               return (
                 <div key={trajet.id} >
                   <div className="address">

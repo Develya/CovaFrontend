@@ -1,7 +1,11 @@
 import React from 'react';
 import './Login.css';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+
+    const navigate = useNavigate();
+
     const [email, setEmail] = React.useState('');
     const [hashedPassword, setHashedPassword] = React.useState('');
     
@@ -32,6 +36,8 @@ const Login = () => {
                 switch (data.success) {
                     case true:
                         setUser(data.user);
+                        console.log(data.user.userID)
+                        navigate(`/habitualtrajets/${data.user.userID}`)
                         break;
                     case false:
                         alert(data.message);
@@ -66,7 +72,7 @@ const Login = () => {
                 </form>
             </div>
 
-            {user != null && <h1>Welcome {user.firstName}!</h1>}
+            {user != null && <h1>Welcome {user.firstName} {user.userID}!</h1>}
 
             {violations.length > 0 &&
                 <div className="violations-container">

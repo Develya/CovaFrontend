@@ -7,6 +7,8 @@ import Register from './Register';
 import Cars from './Cars';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
+import Routecomponent from './route';
+import { BrowserRouter } from 'react-router-dom';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
@@ -14,7 +16,9 @@ const root = createRoot(container);
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <Login />
+      <BrowserRouter>
+        <Routecomponent/>
+      </BrowserRouter>
     </Provider>
   </React.StrictMode>
 );

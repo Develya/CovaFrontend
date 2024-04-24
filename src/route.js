@@ -11,7 +11,7 @@ const Routecomponent = () => (
         <Route exact path='/' element={<RegisterOrLogin/>}/>
         <Route path='/register' element={<Register/>}/>
         <Route path='/login' element={<Login/>}/>
-        <Route path='/habitualtrajets' element={<Habitualtrajets/>}/>
+        <Route path='/habitualtrajets/:userID' element={<Habitualtrajets/>}/>
         <Route path='/createTrajet' element={<CreateTrajet/>}/>
         <Route path='/updateTrajet/:trajetID' element={<UpdateTrajet />} />
     </Routes>
