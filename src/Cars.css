@@ -1,0 +1,60 @@
+.App {
+    text-align: center;
+  }
+  
+  .input-container {
+    margin-bottom: 20px;
+  }
+  
+  .car-list {
+    margin-bottom: 20px;
+  }
+  
+  .car-list ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .car-list li {
+    margin-bottom: 10px;
+  }
+  
+  .delete-btn {
+    margin-left: 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .update-btn {
+    margin-left: 10px;
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .add-car-form {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .add-car-form input {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .add-car-form button {
+    background-color: blue;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  

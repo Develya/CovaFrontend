@@ -1,7 +1,7 @@
 import React from 'react';
-import './Register.css';
+import './Login.css';
 
-const Login = () => {
+const Register = () => {
     const [lastName, setLastName] = React.useState('');
     const [firstName, setFirstName] = React.useState('');
     const [telephone, setTelephone] = React.useState('');
@@ -9,38 +9,21 @@ const Login = () => {
     const [gender, setGender] = React.useState('Prefer not to say');
     const [email, setEmail] = React.useState('');
     const [hashedPassword, setHashedPassword] = React.useState('');
-    const [preferredLanguage, setPreferredLanguage] = React.useState('English');
-    const [profession, setProfession] = React.useState('');
-    const [hobbiesInterests, setHobbiesInterests] = React.useState('');
-    const [emergencyContact, setEmergencyContact] = React.useState('');
-    const [profilePhoto, setProfilePhoto] = React.useState('');
-    const [notificationPreferences, setNotificationPreferences] = React.useState('Email');
-    const [role, setRole] = React.useState('Passenger');
     
     const [violations, setViolations] = React.useState([]);
+
+    const [user, setUser] = React.useState(null);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         setViolations([]);
 
         const user = {
-            lastName: lastName,
-            firstName: firstName,
-            telephone: telephone,
-            dateOfBirth: dateOfBirth,
-            gender: gender === 'Prefer not to say' ? null : gender,
             email: email,
             hashedPassword: hashedPassword,
-            preferredLanguage: preferredLanguage,
-            profession: profession,
-            hobbiesInterests: hobbiesInterests,
-            emergencyContact: emergencyContact,
-            profilePhoto: profilePhoto,
-            notificationPreferences: notificationPreferences,
-            role: role
         };
 
-        fetch('http://localhost:8083/users/register', {
+        fetch('http://localhost:8083/users/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -49,10 +32,20 @@ const Login = () => {
         })
             .then(res => res.json())
             .then(data => {
-                if (data.message !== undefined) {
-                    alert(data.message);
-                } else if (data.violations!== undefined) {
-                    setViolations(data.violations);
+                //alert(JSON.stringify(data.user));
+                
+                switch (data.success) {
+                    case true:
+                        setUser(JSON.parse(data.user));
+                        break;
+                    case false:
+                        alert(data.message);
+                        break;
+                    case undefined:
+                        setViolations(data.violations);
+                        break;
+                    default:
+                        break;
                 }
             });
     }
@@ -60,7 +53,7 @@ const Login = () => {
     return (
         <>
             <div className="container">
-                <h1>Login into an account</h1>
+                <h1>Register an account</h1>
                 <form onSubmit={(e) => handleSubmit(e)}>
                     <div className="label-field">
                         <label htmlFor="email">Email:</label>
@@ -77,6 +70,8 @@ const Login = () => {
                     </div>
                 </form>
             </div>
+
+            {user != null && <h1>Welcome {user.firstName}!</h1>}
 
             {violations.length > 0 &&
                 <div className="violations-container">
