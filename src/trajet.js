@@ -16,17 +16,20 @@ const Habitualtrajets = () =>{
       navigate(`/updateTrajet/${trajetID}`)
     }
 
-    const handleCreate = () =>{
-      navigate('/createTrajet')
+    const handleCreate = (userID) =>{
+      navigate(`/createTrajet/${userID}`)
     }
 
     const handleCreateJourney = (trajetID,dayID) =>{
       navigate(`/createJourney/${userID}/${trajetID}/${dayID}`)
     }
+    const handlePropositionTrajet = (departureAddress, destinationAddress) =>{
+      navigate(`/propositiontrajet/${departureAddress}/${destinationAddress}`)
+    }
 
     return (
         <div className="container">
-          <button onClick={() => handleCreate()}>Create</button>
+          <button onClick={() => handleCreate(parseInt(userID))}>Create</button>
           {trajets.map((trajet) => {
             if (parseInt(trajet.user.userID) === parseInt(userID)) {
               return (
@@ -44,7 +47,12 @@ const Habitualtrajets = () =>{
                   <div className="buttons">
                     <button onClick={() => handleModify(trajet.trajetID)} >Modify</button>
                     <button onClick={() => DeleteTrajet(trajet.trajetID)}>Delete</button>
-                    <button onClick={() => handleCreateJourney(trajet.trajetID,trajet.dayOfWeek.dayID)}>Add to a journey</button>
+                    {trajet.user.role === "Driver"?(
+                      <button onClick={() => handleCreateJourney(trajet.trajetID,trajet.dayOfWeek.dayID)}>Add to a journey</button>
+                    ):(
+                      <button onClick={() => handlePropositionTrajet(trajet.departureAddress, trajet.destinationAddress)}>Recherche trajet</button>
+                    )}
+                    
                   </div>
                 </div>
               );

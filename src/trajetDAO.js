@@ -3,12 +3,12 @@ import { useParams } from "react-router-dom";
 import './createTrajet.css'
 
 export const CreateTrajet = () =>{
+    const {userID} = useParams()
     const [departureAddress, setdepartureAddress] = useState('');
     const [destinationAddress, setdestinationAddress] = useState('');
     const [desiredDepartureTime, setdesiredDepartureTime] = useState('');
     const [desiredArrivalTime, setdesiredArrivalTime] = useState('');
     const [dayOfWeek, setdayOfWeek] = useState([]);
-    const user = 1
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log({
@@ -16,7 +16,7 @@ export const CreateTrajet = () =>{
             destinationAddress,
             desiredDepartureTime,
             desiredArrivalTime,
-            user,
+            userID,
             dayOfWeek
         });
 
@@ -43,7 +43,7 @@ export const CreateTrajet = () =>{
                 desiredDepartureTime: formattedArrivalTime,
                 desiredArrivalTime: formattedDepartureTime,
                 user:{
-                    userID: parseInt(1)
+                    userID: parseInt(userID)
                 },
                 dayOfWeek: {
                     dayID: parseInt(dayOfWeek[0])
