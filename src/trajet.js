@@ -7,10 +7,14 @@ const Habitualtrajets = () =>{
   const {userID} = useParams();
   const [trajets, settrajets] = useState([])
   const navigate = useNavigate()
+
+  React.useEffect(() => {
     fetch('http://localhost:8083/trajets/all')
     .then(response => response.json())
     .then(json => settrajets(json))
     .catch(error => console.error(error))
+  }, []);
+
 
     const handleModify = (trajetID) => {
       navigate(`/updateTrajet/${trajetID}`)

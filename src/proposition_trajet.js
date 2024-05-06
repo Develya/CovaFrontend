@@ -20,6 +20,8 @@ const PropositionTrajet = () => {
     const [distanceBetweenPoints, setDistanceBetweenPoints] = useState(null);
     const [alljourneys, setalljourneys] = useState([])
     const [isInCircle, setisInCircle] = useState([])
+    const data = [{"journeyID":1,"driver":{"userID":1,"lastName":"Doe","firstName":"John","telephone":"123456789","dateOfBirth":"1990-01-01","gender":"Male","email":"john.doe@example.com","hashedPassword":"hashedpassword1","registrationDate":"2024-05-05T22:48:35.483462","preferredLanguage":"English","profession":"Software Engineer","hobbiesInterests":"Reading, Cooking","emergencyContact":"Jane Doe (sister) - 987654321","profilePhoto":"john_doe.jpg","notificationPreferences":"Email","isActive":"TRUE","role":"Driver"},"trajet":{"trajetID":1,"departureAddress":"2070 Rue de la Falaise, Saint-Lazare","destinationAddress":"169 Rue Champlain, Salaberry-de-Valleyfield","desiredDepartureTime":"2024-04-18T08:00:00","desiredArrivalTime":"2024-04-18T09:00:00","user":{"userID":1,"lastName":"Doe","firstName":"John","telephone":"123456789","dateOfBirth":"1990-01-01","gender":"Male","email":"john.doe@example.com","hashedPassword":"hashedpassword1","registrationDate":"2024-05-05T22:48:35.483462","preferredLanguage":"English","profession":"Software Engineer","hobbiesInterests":"Reading, Cooking","emergencyContact":"Jane Doe (sister) - 987654321","profilePhoto":"john_doe.jpg","notificationPreferences":"Email","isActive":"TRUE","role":"Driver"},"dayOfWeek":{"dayID":1,"dayName":"Monday"}},"availableSeats":4,"price":10,"journeyCreationDate":"2024-05-05T22:48:35.488003","isActive":true,"departureCoords":{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[-74.14513016128394,45.396813207387666]}},"destinationCoords":{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[-74.1324451,45.2536371]}}},{"journeyID":3,"driver":{"userID":4,
+    "lastName":"Brown","firstName":"Sophia","telephone":"1112223333","dateOfBirth":"1982-03-10","gender":"Female","email":"sophia.brown@example.com","hashedPassword":"hashedpassword4","registrationDate":"2024-05-05T22:48:35.483462","preferredLanguage":"English","profession":"Doctor","hobbiesInterests":"Playing Piano, Yoga","emergencyContact":"James Brown (husband) - 1113332222","profilePhoto":"sophia_brown.jpg","notificationPreferences":"Email","isActive":"TRUE","role":"Passenger"},"trajet":{"trajetID":3,"departureAddress":"2070 Rue de la Falaise, Saint-Lazare","destinationAddress":"169 Rue Champlain, Salaberry-de-Valleyfield","desiredDepartureTime":"2024-04-18T10:00:00","desiredArrivalTime":"2024-04-18T11:00:00","user":{"userID":4,"lastName":"Brown","firstName":"Sophia","telephone":"1112223333","dateOfBirth":"1982-03-10","gender":"Female","email":"sophia.brown@example.com","hashedPassword":"hashedpassword4","registrationDate":"2024-05-05T22:48:35.483462","preferredLanguage":"English","profession":"Doctor","hobbiesInterests":"Playing Piano, Yoga","emergencyContact":"James Brown (husband) - 1113332222","profilePhoto":"sophia_brown.jpg","notificationPreferences":"Email","isActive":"TRUE","role":"Passenger"},"dayOfWeek":{"dayID":3,"dayName":"Wednesday"}},"availableSeats":2,"price":7,"journeyCreationDate":"2024-05-05T22:48:35.488003","isActive":true,"departureCoords":{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[-74.14513016128394,45.396813207387666]}},"destinationCoords":{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[-74.1324451,45.2536371]}}}]
 
     // Fonction pour obtenir les coordonnées géographiques à partir d'une adresse avec Nominatim
     // Modifier la fonction geocodeAddress pour retourner les coordonnées géographiques
@@ -137,9 +139,36 @@ useEffect(() => {
     .catch((error) => console.log(error));
 }, [])
 
+const handleReservation = () => {
+    alert("reservation is done.")
+}
+
 
 return(
-    <div>
+    <>
+        {
+            data.map((item) => {
+                return(
+                    <div key={item.journeyID} >
+                        <div className="address">
+                            <p>Departure address: {item.trajet.departureAddress}</p>
+                            <p>Destionation address: {item.trajet.destinationAddress}</p>
+                        </div>
+                        <div className="time">
+                            <p>Desired Departure time: {item.trajet.desiredDepartureTime}</p>
+                            <p>Desired Arrival Time: {item.trajet.desiredArrivalTime}</p>
+                        </div>
+                        <p> Day: {JSON.stringify(item.trajet.dayOfWeek.dayName)}</p>
+                        <p>{JSON.stringify(item.trajet.trajetID)}</p>
+                        <div className="buttons">
+                            <button onClick={handleReservation}>Make a reservation</button>
+                        </div>
+                    </div>
+                )
+            })
+        }
+    </>
+    /*<div>
         <h1>Coordonnées de départ:</h1>
         {departureCoords && (
             <div>
@@ -182,7 +211,7 @@ return(
                 <p>{JSON.stringify(isInCircle)}</p>
             </div>
         )}
-    </div>
+    </div>*/
 )
 }
 
