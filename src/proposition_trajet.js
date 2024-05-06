@@ -36,11 +36,11 @@ const PropositionTrajet = () => {
             const coords = point([parseFloat(data[0].lon), parseFloat(data[0].lat)]);
             return coords;
         } else {
-            console.error("Aucune coordonnée trouvée pour l'adresse:", address);
+            //console.error("Aucune coordonnée trouvée pour l'adresse:", address);
             return null;
         }
     } catch (error) {
-        console.error('Erreur lors de la géocodage de l\'adresse:', error);
+        //console.error('Erreur lors de la géocodage de l\'adresse:', error);
         return null;
     }
 };
@@ -62,11 +62,11 @@ const PropositionTrajet = () => {
         // Vérifier si les coordonnées de départ et d'arrivée sont disponibles
         if (departureCoords && destinationCoords) {
             // Créer un cercle de 10 km autour du point de départ
-            console.log("departureCoord sont en tabarnak: ", departureCoords)
+            //console.log("departureCoord sont en tabarnak: ", departureCoords)
             const departureCircle = circle(departureCoords.geometry.coordinates, 10, { units: 'kilometers' });
             
             departureCircle.geometry.coordinates[0].push(departureCoords.geometry.coordinates)
-            console.log("hdoashdsoahd: ", departureCircle.geometry.coordinates[0])
+            //console.log("hdoashdsoahd: ", departureCircle.geometry.coordinates[0])
             setDepartureCircle(departureCircle);
 
             // Créer un cercle de 10 km autour du point de destination
@@ -86,13 +86,13 @@ useEffect(() => {
     .then(response => response.json())
     .then(async (json) => {
         // Filtrer les trajets pour ne conserver que ceux avec des adresses valides
-        console.log("tanarmal de vierge",json)
+        //console.log("tanarmal de vierge",json)
         const validJourneys = await Promise.all(json.map(async (journey) => {
             // Géocoder les adresses de départ et d'arrivée
             const departureCoords = await geocodeAddress(journey.trajet.departureAddress);
             const destinationCoords = await geocodeAddress(journey.trajet.destinationAddress);
-            console.log("departureCoord", departureCoords)
-            console.log("destinationCoord", destinationCoords)
+            //console.log("departureCoord", departureCoords)
+            //console.log("destinationCoord", destinationCoords)
             // Vérifier si les coordonnées ont été obtenues avec succès
             if (departureCoords && destinationCoords) {
                 // Ajouter les coordonnées géographiques au trajet
@@ -106,16 +106,16 @@ useEffect(() => {
                 return null;
             }
         }));
-        console.log("esti.... ", validJourneys)
+        //console.log("esti.... ", validJourneys)
         // Filtrer les trajets invalides (ceux avec des adresses non géocodées)
         const filteredJourneys = validJourneys.filter(journey => journey !== null);
-        console.log("bon... ", filteredJourneys)
+        //console.log("bon... ", filteredJourneys)
         setalljourneys(filteredJourneys);
-        console.log("all journeys: ",alljourneys)
+        //console.log("all journeys: ",alljourneys)
 
         filteredJourneys.map((journey) => {
             let destination = false
-            console.log(journey)
+            //console.log(journey)
             const cheh = departureCircle.geometry.coordinates
             cheh[0].map((departure) => {
                 if(journey.departureCoords.geometry.coordinates[0] == departure[0])
@@ -130,13 +130,13 @@ useEffect(() => {
                         setisInCircle((prevJourneys) => [...prevJourneys, journey]);
                     }
                   }
-                console.log("isInCirlce: ", isInCircle)
+                //console.log("isInCirlce: ", isInCircle)
                 })
             }
-            console.log("the fuck")
+            //console.log("the fuck")
         })
     })
-    .catch((error) => console.log(error));
+    .catch((error) => //console.log(error));
 }, [])
 
 const handleReservation = () => {
@@ -198,7 +198,7 @@ return(
             </div>
         )}
         <h1>All journeys</h1>
-        {console.log("pu trop trop le choix: ",alljourneys)}
+        {//console.log("pu trop trop le choix: ",alljourneys)}
         {alljourneys.map((journey, index) => (
             <div key={index}>
                 <p>{JSON.stringify(journey.departureCoords.geometry.coordinates)} </p>
